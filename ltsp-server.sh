@@ -104,13 +104,13 @@ build-client() {
   if [ -d "$BASE/$ARCH" ]
   then
     sudo rm -rf "$BASE/$ARCH"
-    success "Had to remove old ltsp image $BASE/$ARCH"
-    info 'Building LTSP Client Image now ...'
+    success "Had to remove old LTSP Client Image $BASE/$ARCH"
   fi
 
+  info 'Building LTSP Client Image now ...'
   sudo ltsp-build-client --arch $ARCH >/dev/null
 
-  success 'Built the LTSP Client Image'
+  success 'Built a new LTSP Client Image'
 }
 
 update-image() {
@@ -120,7 +120,7 @@ update-image() {
 
   sudo ltsp-update-image --arch $ARCH >/dev/null
 
-  success 'Updated the LTSP Client Image'
+  success 'Created an updated LTSP Client Image'
 }
 
 
