@@ -62,21 +62,21 @@ configure() {
 install() {
   info 'Installing ltsp-server ...'
 
-  sudo apt-get install -y -q ltsp-server-standalone openssh-server >/dev/null
+  sudo apt-get install -y -q ltsp-server openssh-server >/dev/null
   success 'Installed ltsp-server'
 
   configure
 }
 
 remove() {
-  info 'Removing (purging) ltsp-server-standalone ...'
+  info 'Removing (purging) ltsp-server ...'
 
-  sudo apt-get purge -y -q ltsp-server-standalone >/dev/null
-  success 'Removed ltsp-server-standalone'
+  sudo apt-get purge -y -q ltsp-server >/dev/null
+  success 'Removed ltsp-server'
 }
 
 reconfigure() {
-  info 'Reconfiguring ltsp-server-standalone ...'
+  info 'Reconfiguring ltsp-server ...'
   configure
 }
 
@@ -84,9 +84,14 @@ reconfigure() {
 client-conf() {
   # default base is /opt/ltsp
   BASE="/opt/ltsp"
-  # the default is 32 bit
+  # the default arch for the ltsp chroot is like the machine arch
   # it might be overriden by the build-client.conf
-  ARCH="i386"
+  if [ "$(uname -m)" == "x86_64" ]
+  then
+    ARCH="amd64"
+  else
+    ARCH="i386"
+  fi
 
   CONF="/etc/ltsp-build-client.conf"
   # check if the client configuration exists
