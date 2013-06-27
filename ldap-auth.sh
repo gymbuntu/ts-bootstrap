@@ -79,8 +79,8 @@ install() {
 
   configure
 
-  sudo sh -c 'echo "session required        pam_mkhomedir.so skel=/etc/skel/ umask=0022" >> /etc/pam.d/common-session'
-  success 'Activated automatic home directory creation'
+  # sudo sh -c 'echo "session required        pam_mkhomedir.so skel=/etc/skel/ umask=0022" >> /etc/pam.d/common-session'
+  # success 'Activated automatic home directory creation'
 }
 
 remove() {
