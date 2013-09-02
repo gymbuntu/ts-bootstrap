@@ -46,8 +46,10 @@ Then, you'll need to edit the `/etc/pam.d/common-session` file.
 You'll have to place the following line before any pam_ldap and pam_krb5 settings
 
 ```sh
-session required        pam_mkhomedir.so umask=0022 skel=/etc/skel
+session required        pam_mkhomedir.so umask=0077 skel=/etc/skel
 ```
+
+(We use `umask=0077` because it's loads more safe.)
 
 Now ldap authentication should work. Try it using some creditials you created on your ldap server.
 
