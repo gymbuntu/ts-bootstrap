@@ -92,6 +92,13 @@ remove() {
 
 reconfigure() {
   info 'Reconfiguring LDAP Auth Module ...'
+  
+  CONF="/etc/ldap.conf"
+  # Delete the old config file if present
+  if [ -e "$CONF" ]; then
+     sudo rm -f $CONF
+     success "Removed old config file $CONF"
+  exit
 
   preconfigure
 
