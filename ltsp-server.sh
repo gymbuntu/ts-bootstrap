@@ -42,8 +42,7 @@ configure() {
   # copy the client config
   CLIENT_CONF="$BOOT/ltsp-build-client.conf"
   CLIENT_CONF_TO="/etc/ltsp/ltsp-build-client.conf"
-  if [ -e "$CLIENT_CONF" ]
-  then
+  if [ -e "$CLIENT_CONF" ]; then
     sudo cp $CLIENT_CONF $CLIENT_CONF_TO
     success "Copied $(basename $CLIENT_CONF) to $CLIENT_CONF_TO"
   fi
@@ -51,8 +50,7 @@ configure() {
   # copy the image config
   IMAGE_CONF="$BOOT/ltsp-update-image.conf"
   IMAGE_CONF_TO="/etc/ltsp/ltsp-update-image.conf"
-  if [ -e "$IMAGE_CONF" ]
-  then
+  if [ -e "$IMAGE_CONF" ]; then
     sudo cp $IMAGE_CONF $IMAGE_CONF_TO
     success "Copied $(basename $IMAGE_CONF) to $IMAGE_CONF_TO"
   fi
@@ -86,8 +84,7 @@ client-conf() {
   BASE="/opt/ltsp"
   # the default arch for the ltsp chroot is like the machine arch
   # it might be overriden by the build-client.conf
-  if [ "$(uname -m)" == "x86_64" ]
-  then
+  if [ "$(uname -m)" == "x86_64" ]; then
     ARCH="amd64"
   else
     ARCH="i386"
@@ -106,8 +103,7 @@ build-client() {
 
   client-conf
 
-  if [ -d "$BASE/$ARCH" ]
-  then
+  if [ -d "$BASE/$ARCH" ]; then
     sudo rm -rf "$BASE/$ARCH"
     success "Had to remove old LTSP Client Image $BASE/$ARCH"
   fi
